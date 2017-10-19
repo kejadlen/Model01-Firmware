@@ -59,6 +59,7 @@
 // Support for host power management (suspend & wakeup)
 #include "Kaleidoscope-HostPowerManagement.h"
 
+#include "Kaleidoscope-DualUse.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -135,14 +136,14 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Backtick, Key_Q, Key_W, Key_D, Key_F, Key_K, Key_Tab,
    Key_PageUp,   Key_A, Key_S, Key_E, Key_T, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
-   Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
+   GUI_T(Tab), ALT_T(Backspace), CTL_T(Escape), Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
    M(MACRO_ANY),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
    Key_Enter,     Key_J, Key_U, Key_R,     Key_L,         Key_Semicolon, Key_Equals,
                   Key_Y, Key_N, Key_I,     Key_O,         Key_H,         Key_Quote,
    Key_RightAlt,  Key_P, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, Key_LeftAlt, Key_Spacebar, Key_RightControl,
+   Key_RightShift, CTL_T(Enter), ALT_T(Spacebar), GUI_T(Tab),
    ShiftToLayer(FUNCTION)),
 
 
@@ -341,7 +342,9 @@ void setup() {
 
     // The HostPowerManagement plugin enables waking up the host from suspend,
     // and allows us to turn LEDs off when it goes to sleep.
-    &HostPowerManagement
+    &HostPowerManagement,
+
+    &DualUse
   );
 
   // While we hope to improve this in the future, the NumPad plugin
