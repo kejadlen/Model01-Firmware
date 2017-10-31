@@ -122,7 +122,7 @@ enum { MACRO_VERSION_INFO,
   *
   */
 
-enum { NORMAN, FUNCTION, NUMPAD }; // layers
+enum { NORMAN, FUNCTION }; // layers
 
 /* This comment temporarily turns off astyle's indent enforcement
  *   so we can make the keymaps actually resemble the physical key layout better
@@ -132,49 +132,33 @@ enum { NORMAN, FUNCTION, NUMPAD }; // layers
 const Key keymaps[][ROWS][COLS] PROGMEM = {
 
   [NORMAN] = KEYMAP_STACKED
-  (___,          Key_1, Key_2, Key_3, Key_4, Key_5, Key_LEDEffectNext,
+  (___,          ___,   ___,   ___,   ___,   ___,   Key_LEDEffectNext,
    Key_Backtick, Key_Q, Key_W, Key_D, Key_F, Key_K, Key_Tab,
-   Key_PageUp,   Key_A, Key_S, Key_E, Key_T, Key_G,
-   Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
+   ___,          Key_A, Key_S, Key_E, Key_T, Key_G,
+   ___,          Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
    GUI_T(Tab), ALT_T(Backspace), CTL_T(Escape), Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
-   M(MACRO_ANY),  Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NUMPAD),
-   Key_Enter,     Key_J, Key_U, Key_R,     Key_L,         Key_Semicolon, Key_Equals,
-                  Key_Y, Key_N, Key_I,     Key_O,         Key_H,         Key_Quote,
-   Key_RightAlt,  Key_P, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, CTL_T(Enter), ALT_T(Spacebar), GUI_T(Tab),
+   M(MACRO_ANY),   Key_6, Key_LeftArrow, Key_DownArrow, Key_UpArrow, Key_RightArrow, ___,
+   Key_VolumeUp,   Key_J, Key_U,         Key_R,         Key_L,       Key_Semicolon,  Key_Backslash,
+                   Key_Y, Key_N,         Key_I,         Key_O,       Key_H,          Key_Quote,
+   Key_VolumeDown, Key_P, Key_M,         Key_Comma,     Key_Period,  Key_Slash,      ___,
+   Key_RightShift, ALT_T(Enter), Key_Spacebar, GUI_T(Tab),
    ShiftToLayer(FUNCTION)),
 
-
-  [NUMPAD] =  KEYMAP_STACKED
-  (___, ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___, ___, ___, ___,
-   ___, ___, ___, ___,
-   ___,
-
-   M(MACRO_VERSION_INFO),  ___, Key_Keypad7, Key_Keypad8,   Key_Keypad9,        Key_KeypadSubtract, ___,
-   ___,                    ___, Key_Keypad4, Key_Keypad5,   Key_Keypad6,        Key_KeypadAdd,      ___,
-                           ___, Key_Keypad1, Key_Keypad2,   Key_Keypad3,        Key_Equals,         ___,
-   ___,                    ___, Key_Keypad0, Key_KeypadDot, Key_KeypadMultiply, Key_KeypadDivide,   Key_Enter,
-   ___, ___, ___, ___,
-   ___),
-
   [FUNCTION] =  KEYMAP_STACKED
-  (___,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           XXX,
-   Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
-   Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
-   Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
+  (___,           Key_F1,        Key_F2,        Key_F3,                  Key_F4,                   Key_F5,                ___,
+   ___,           LSHIFT(Key_1), LSHIFT(Key_2), LSHIFT(Key_LeftBracket), LSHIFT(Key_RightBracket), LSHIFT(Key_Backslash), ___,
+   ___,           LSHIFT(Key_3), LSHIFT(Key_4), LSHIFT(Key_9),           LSHIFT(Key_0),            Key_Backslash,
+   LSHIFT(Key_7), LSHIFT(Key_5), LSHIFT(Key_6), Key_LeftBracket,         Key_RightBracket,         LSHIFT(Key_8),         ___,
    ___, Key_Delete, ___, ___,
    ___,
 
-   Consumer_ScanPreviousTrack, Key_F6,                 Key_F7,                   Key_F8,                   Key_F9,          Key_F10,          Key_F11,
-   Consumer_PlaySlashPause,    Consumer_ScanNextTrack, Key_LeftCurlyBracket,     Key_RightCurlyBracket,    Key_LeftBracket, Key_RightBracket, Key_F12,
-                               Key_LeftArrow,          Key_DownArrow,            Key_UpArrow,              Key_RightArrow,  ___,              ___,
-   Key_PcApplication,          Consumer_Mute,          Consumer_VolumeDecrement, Consumer_VolumeIncrement, ___,             Key_Backslash,    Key_Pipe,
-   ___, ___, Key_Enter, ___,
+   Consumer_ScanPreviousTrack, Key_F6,            Key_F7, Key_F8, Key_F9, Key_F10,            Key_F11,
+   Consumer_PlaySlashPause,    Key_Equals,        Key_7,  Key_8,  Key_9,  LSHIFT(Key_Equals), Key_F12,
+                               Key_Minus,         Key_4,  Key_5,  Key_6,  Key_Quote,          ___,
+   Key_PcApplication,          LSHIFT(Key_Minus), Key_1,  Key_2,  Key_3,  LSHIFT(Key_Quote),  ___,
+   ___, ___, Key_Enter, Key_0,
    ___)
 
 };
@@ -315,10 +299,10 @@ void setup() {
 
     // The chase effect follows the adventure of a blue pixel which chases a red pixel across
     // your keyboard. Spoiler: the blue pixel never catches the red pixel
-    &LEDChaseEffect,
+    // &LEDChaseEffect,
 
     // These static effects turn your keyboard's LEDs a variety of colors
-    &solidRed, &solidOrange, &solidYellow, &solidGreen, &solidBlue, &solidIndigo, &solidViolet,
+    // &solidRed, &solidOrange, &solidYellow, &solidGreen, &solidBlue, &solidIndigo, &solidViolet,
 
     // The breathe effect slowly pulses all of the LEDs on your keyboard
     &LEDBreatheEffect,
@@ -349,7 +333,7 @@ void setup() {
 
   // While we hope to improve this in the future, the NumPad plugin
   // needs to be explicitly told which keymap layer is your numpad layer
-  NumPad.numPadLayer = NUMPAD;
+  /* NumLock.numPadLayer = NUMPAD; */
 
   // We configure the AlphaSquare effect to use RED letters
   AlphaSquare.color = CRGB(255, 0, 0);
