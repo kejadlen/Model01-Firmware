@@ -316,7 +316,7 @@ void setup() {
 
     // The numpad plugin is responsible for lighting up the 'numpad' mode
     // with a custom LED effect
-    &NumPad,
+    // &NumLock,
 
     // The macros plugin adds support for macros
     &Macros,
