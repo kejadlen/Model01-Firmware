@@ -133,9 +133,9 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
 
   [NORMAN] = KEYMAP_STACKED
   (___,          ___,   ___,   ___,   ___,   ___,   Key_LEDEffectNext,
-   Key_Backtick, Key_Q, Key_W, Key_D, Key_F, Key_K, Key_Tab,
-   ___,          Key_A, Key_S, Key_E, Key_T, Key_G,
-   ___,          Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
+   ___,          Key_Q, Key_W, Key_D, Key_F, Key_K, Key_Tab,
+   Key_Backtick, Key_A, Key_S, Key_E, Key_T, Key_G,
+   ___,          Key_Z, Key_X, Key_C, Key_V, Key_B, LCTRL(LALT(Key_LeftGui)),
    GUI_T(Tab), ALT_T(Backspace), CTL_T(Escape), Key_LeftShift,
    ShiftToLayer(FUNCTION),
 
@@ -219,6 +219,7 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
     anyKeyMacro(keyState);
     break;
   }
+
   return MACRO_NONE;
 }
 
