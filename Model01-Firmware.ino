@@ -59,7 +59,7 @@
 // Support for host power management (suspend & wakeup)
 #include "Kaleidoscope-HostPowerManagement.h"
 
-#include "Kaleidoscope-DualUse.h"
+#include "Kaleidoscope-Qukeys.h"
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -278,6 +278,8 @@ void setup() {
   // The order can be important. For example, LED effects are
   // added in the order they're listed here.
   Kaleidoscope.use(
+    &Qukeys,
+
     // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
     &BootGreetingEffect,
 
@@ -327,9 +329,7 @@ void setup() {
 
     // The HostPowerManagement plugin enables waking up the host from suspend,
     // and allows us to turn LEDs off when it goes to sleep.
-    &HostPowerManagement,
-
-    &DualUse
+    &HostPowerManagement
   );
 
   // While we hope to improve this in the future, the NumPad plugin
