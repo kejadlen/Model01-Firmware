@@ -440,6 +440,9 @@ void setup() {
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
 
+  // Decrease the timeout for Qukeys from 250ms
+  Qukeys.setTimeout(100);
+
   // We configure the AlphaSquare effect to use RED letters
   AlphaSquare.color = CRGB(255, 0, 0);
 
@@ -467,11 +470,6 @@ void setup() {
   // by using the `settings.defaultLayer` Focus command, or by using the
   // `keymap.onlyCustom` command to use EEPROM layers only.
   EEPROMKeymap.setup(5);
-
-  // We need to tell the Colormap plugin how many layers we want to have custom
-  // maps for. To make things simple, we set it to five layers, which is how
-  // many editable layers we have (see above).
-  ColormapEffect.max_layers(5);
 }
 
 /** loop is the second of the standard Arduino sketch functions.
